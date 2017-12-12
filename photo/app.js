@@ -16,7 +16,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('photos', __dirname + '/public/photos')
-app.use(multiparty({uploadDir:'photos' }))
+app.use(multiparty({uploadDir:'/public/photos' }))
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', photos.list);
 app.use('/users', users);
 app.get('/upload',photos.form)
-app.post('/upload', multipartMiddleware, photos.submit(app.get('/')))
+app.post('/upload', multipartMiddleware, photos.submit(app.get('photos')))
 
 
 // catch 404 and forward to error handler

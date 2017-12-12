@@ -23,6 +23,7 @@ exports.form = function(req, res) {
 
 exports.submit = function(dir) {
   return function(req, res, next) {
+    console.log(req.files)
     let img = req.files.photo.image
     let name = req.body.photo.name || img.name
     let path = join(dir, img.name)
@@ -38,6 +39,5 @@ exports.submit = function(dir) {
         res.redirect('/')
       })
     })
-    res.redirect('/')
   }
 }
