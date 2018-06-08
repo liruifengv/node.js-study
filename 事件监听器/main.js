@@ -1,36 +1,36 @@
 /**
- * Created by ¾ÉÃÎ on 2017/4/17.
+ * Created by æ—§æ¢¦ on 2017/4/17.
  */
 var events=require('events');
 var eventEmitter=new events.EventEmitter();
 
-//¼àÌıÆ÷ #1
+//ç›‘å¬å™¨ #1
 var listener1=function listener1(){
     console.log('listener1 is working!');
 }
 
-//¼àÌıÆ÷ #2
+//ç›‘å¬å™¨ #2
 var listener2=function listener2(){
     console.log('listener2 is working!');
 }
 
-//°ó¶¨ connection ÊÂ¼ş£¬´¦Àíº¯ÊıÎª listener1
+//ç»‘å®š connection äº‹ä»¶ï¼Œå¤„ç†å‡½æ•°ä¸º listener1
 eventEmitter.addListener('connection',listener1);
 
-//°ó¶¨ connection ÊÂ¼ş£¬´¦Àíº¯ÊıÎª listener2
+//ç»‘å®š connection äº‹ä»¶ï¼Œå¤„ç†å‡½æ•°ä¸º listener2
 eventEmitter.on('connection',listener2);
 
 var eventListeners=require('events').EventEmitter.listenerCount(eventEmitter,'connection');
 console.log(eventListeners+" listeners is listening events.");
 
-//´¦Àí connection ÊÂ¼ş
+//å¤„ç† connection äº‹ä»¶
 eventEmitter.emit('connection');
 
-//ÒÆ³ı°ó¶¨¼àÌıµÄ listener1 º¯Êı
+//ç§»é™¤ç»‘å®šç›‘å¬çš„ listener1 å‡½æ•°
 eventEmitter.removeListener('connection',listener1);
 console.log("listener1 is not listen.");
 
-//´¥·¢Á¬½ÓÊÂ¼ş
+//è§¦å‘è¿æ¥äº‹ä»¶
 eventEmitter.emit('connection');
 
 eventListeners=require('events').EventEmitter.listenerCount(eventEmitter,'connection');
